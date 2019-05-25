@@ -4,18 +4,25 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { 
     path: '', 
-    redirectTo: 'weather-forecast', 
-    pathMatch: 'full'
-  },
-  {
-    path: 'weather-forecast',
     children: [
-    { path: '', redirectTo: 'main-list', pathMatch: 'full' },
-    {
-      path: '',
-      loadChildren: './main-list/main-list.module#MainListModule'
-    }]
-    
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'main-list'
+      },
+      {
+        path: 'main-list',
+        loadChildren: './main-list/main-list.module#MainListModule'
+      },
+      {
+        path: 'search',
+        loadChildren: './search/search.module#SearchModule'
+      },
+      {
+        path: 'weather-details/:cityId',
+        loadChildren: './weather-details/weather-details.module#WeatherDetailsModule'
+    }
+    ]
   }
 ];
 

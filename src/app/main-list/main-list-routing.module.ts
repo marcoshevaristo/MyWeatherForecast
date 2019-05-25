@@ -20,21 +20,11 @@ export class LoadListResolver implements Resolve<any> {
 @NgModule({
     imports: [
         RouterModule.forChild([{
-          path: 'main-list',
+          path: '',
           component: MainListComponent,
           resolve: {
               listData: LoadListResolver
-          },
-          children: [
-              {
-                  path: 'search',
-                  loadChildren: '../search/search.module#SearchModule'
-              },
-              {
-                  path: 'weather-details/:cityId',
-                  loadChildren: '../weather-details/weather-details.module#WeatherDetailsModule'
-              }
-          ]
+          }
         }
     ])]
 })

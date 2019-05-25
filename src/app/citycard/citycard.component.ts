@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'citycard',
@@ -15,7 +16,7 @@ export class CityCardComponent implements OnInit {
   @Input() minTemp: string;
   @Input() maxTemp: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     
@@ -27,6 +28,10 @@ export class CityCardComponent implements OnInit {
 
   get _currentTemp() {
     return this.currentTemp ? this.currentTemp.toFixed(0) + 'ºC' : '';
+  }
+
+  goToDetails() {
+    this.router.navigate([`/weather-details/${this.id}`])
   }
 
 }

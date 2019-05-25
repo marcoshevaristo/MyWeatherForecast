@@ -1,22 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Weather Forecast
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <div class="ion-padding row">
-    <div class="city-card-container col-sm-12 col-md-4 col-lg-2" *ngFor="let city of wheatherInfo">
-        <citycard 
-            [id]="city?.id" 
-            [name]="city?.name"
-            [weatherState]="city?.weather[0]?.description"
-            [icon]="city?.weather[0].icon"
-            [currentTemp]="city?.main?.temp"
-            [minTemp]="city?.main?.temp_min"
-            [maxTemp]="city?.main?.temp_max">
-          </citycard>
-      </div>
+<div class="ion-padding row" style="overflow-y: scroll">
+    <div class="city-card-container col-sm-4 col-md-4 col-lg-2" 
+      *ngFor="let city of wheatherInfo">
+      <citycard 
+        [id]="city?.id" 
+        [name]="city?.name"
+        [weatherState]="city?.weather[0]?.description"
+        [icon]="city?.weather[0].icon"
+        [currentTemp]="city?.main?.temp"
+        [minTemp]="city?.main?.temp_min"
+        [maxTemp]="city?.main?.temp_max">
+      </citycard>
+    </div>
   </div>
-</ion-content>

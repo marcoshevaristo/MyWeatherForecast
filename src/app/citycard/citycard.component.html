@@ -1,10 +1,5 @@
 <mdb-card >
-  <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-    <a>
-      <div class="mask"></div>
-    </a>
-  </div>
-  <mdb-card-body>
+  <mdb-card-body mdbWavesEffect (click)="goToDetails()" style="cursor: pointer;">
     <mdb-card-title>
       <h2 style="text-align: center;">{{name}}</h2>
     </mdb-card-title>
@@ -14,7 +9,6 @@
           <i *ngIf="!iconUrl" class="far fa-question-circle"></i>
           <span>{{_currentTemp}}</span>
       </div>
-      
     </mdb-card-text>
   </mdb-card-body>
 </mdb-card>
