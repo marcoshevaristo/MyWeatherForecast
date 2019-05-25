@@ -7,13 +7,15 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(), 
     AppRoutingModule,
     MDBBootstrapModule.forRoot()

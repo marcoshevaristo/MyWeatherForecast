@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CityCardModule } from '../citycard/citycard.module';
 import { SharedModule } from '../commons/shared.module';
-import { MainListRoutingModule } from './main-list-routing.module';
+import { MainListRoutingModule, LoadListResolver } from './main-list-routing.module';
 import { MainListComponent } from './main-list.component';
 import { MainListService } from './main-list.service';
 
@@ -12,6 +12,6 @@ import { MainListService } from './main-list.service';
     MainListRoutingModule,
     CityCardModule
   ],
-  providers: [MainListService]
+  providers: [MainListService, LoadListResolver]
 })
 export class MainListModule { }

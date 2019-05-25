@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MainListService } from './main-list.service';
-import { City } from '../commons/interfaces/city';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'main-list',
@@ -9,11 +8,11 @@ import { City } from '../commons/interfaces/city';
 })
 export class MainListComponent implements OnInit {
 
-  public cities: City[];
-  constructor(private mainListService: MainListService) { }
+  public wheatherInfo: any;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.cities = this.mainListService.getCities();
+    this.wheatherInfo = this.activatedRoute.snapshot.data['listData'].list;
   }
 
 }
