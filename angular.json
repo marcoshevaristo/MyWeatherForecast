@@ -32,17 +32,21 @@
               }
             ],
             "styles": [
-              {
-                "input": "src/theme/variables.scss"
-              },
-              {
-                "input": "src/global.scss"
-              },
-              {
-                "input": "src/app/app.scss"
-              }
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+              "src/global.scss",
+              "src/styles.scss",
+              "src/theme/variables.scss",
+              "src/app/app.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

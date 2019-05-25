@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Weather Forecast
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-padding">
+    <div class="city-card-container" *ngFor="let city of cities">
+      <citycard [id]="city.id" [name]="city.name"></citycard>
+    </div>
+  </div>
+</ion-content>
