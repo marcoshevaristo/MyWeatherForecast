@@ -11,7 +11,7 @@ export class CityCardComponent implements OnInit {
   @Input() name: string;
   @Input() weatherState: string;
   @Input() icon: string;
-  @Input() currentTemp: string;
+  @Input() currentTemp: number;
   @Input() minTemp: string;
   @Input() maxTemp: string;
 
@@ -23,6 +23,10 @@ export class CityCardComponent implements OnInit {
 
   get iconUrl() {
     return this.icon ? `http://openweathermap.org/img/w/${this.icon}.png` : null;
+  }
+
+  get _currentTemp() {
+    return this.currentTemp ? this.currentTemp.toFixed(0) + 'ºC' : '';
   }
 
 }

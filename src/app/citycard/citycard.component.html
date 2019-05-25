@@ -1,17 +1,20 @@
 <mdb-card >
   <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-    <mdb-card-img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap"></mdb-card-img>
     <a>
       <div class="mask"></div>
     </a>
   </div>
   <mdb-card-body>
     <mdb-card-title>
-      <h4 stlye="text-align: center;">{{name}}</h4>
+      <h2 style="text-align: center;">{{name}}</h2>
     </mdb-card-title>
     <mdb-card-text>
-      <img *ngIf="iconUrl" src="iconUrl()">
-      <i *ngIf="iconUrl" class="far fa-question-circle"></i>
+      <div style="text-align: center;">
+          <img *ngIf="iconUrl" src="{{iconUrl}}" style="height: 8em;">
+          <i *ngIf="!iconUrl" class="far fa-question-circle"></i>
+          <span>{{_currentTemp}}</span>
+      </div>
+      
     </mdb-card-text>
   </mdb-card-body>
 </mdb-card>

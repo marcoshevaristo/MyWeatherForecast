@@ -6,10 +6,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="ion-padding">
-    <div class="city-card-container" *ngFor="let city of wheatherInfo">
-        <div class="col-sm-12 col-md-4 col-lg-2">
-          <citycard 
+  <div class="ion-padding row">
+    <div class="city-card-container col-sm-12 col-md-4 col-lg-2" *ngFor="let city of wheatherInfo">
+        <citycard 
             [id]="city?.id" 
             [name]="city?.name"
             [weatherState]="city?.weather[0]?.description"
@@ -18,7 +17,6 @@
             [minTemp]="city?.main?.temp_min"
             [maxTemp]="city?.main?.temp_max">
           </citycard>
-        </div>
       </div>
   </div>
 </ion-content>
