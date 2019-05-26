@@ -9,25 +9,14 @@ export class MainListService {
 
     constructor(private http: HttpClient) { }
 
-    public getCitiesCurrentWeather(): Observable<any> {
-        let storageCitiesIds = this.getUserCitiesList();
-        if (storageCitiesIds && storageCitiesIds.length) {
-            const storageCurrentWeather = this.getCitiesCurrentWeatherStorage();
-            if (storageCurrentWeather 
-                    && new Date().getTime() > Date.parse(storageCurrentWeather.expirationDate)) {
-                const itemsOnStorageAndList = storageCurrentWeather.weatherInfo.list
-                    .filter(item => storageCitiesIds.includes(item.id)).map(item => item.id);
-                storageCitiesIds = storageCitiesIds.filter(id => !itemsOnStorageAndList.includes(id));
-            }
-
-            if (storageCitiesIds && storageCitiesIds.length) {
-                const citiesIdsStr = storageCitiesIds.join(',');
+    public getCitiesCurrentWeather(citiesIds?: number[]): Observable<any> {
+        let citiesIdsToSearch = this.isValidNumberArray(citiesIds) ? citiesIds : this.getUserCitiesList();
+        if (citiesIdsToSearch && citiesIdsToSearch.length) {
+            if (citiesIdsToSearch && citiesIdsToSearch.length) {
+                const citiesIdsStr = citiesIdsToSearch.join(',');
                 return this.http.get(
-                    `http://api.openweathermap.org/data/2.5/group?id=${citiesIdsStr}&units=metric&APPID=${getWeatherApiKey()}&lang=pt`)
-                    
+                    `http://api.openweathermap.org/data/2.5/group?id=${citiesIdsStr}&units=metric&APPID=${getWeatherApiKey()}&lang=pt`)  
             }
-
-            return of(storageCurrentWeather.weatherInfo);
         }
 
         return of(null);
@@ -47,20 +36,17 @@ export class MainListService {
         this.setUserCitiesList(citiesList);
     }
 
-    public setCitiesCurrentWeatherStorage(weatherInfo: any) {
-        const expirationDate = this.getNewExpirationDateString();
-        const currentInfo = this.getCitiesCurrentWeatherStorage();
-        localStorage.setItem('citiesCurrentWeather', 
-            JSON.stringify({expirationDate, weatherInfo: Object.assign(currentInfo ? currentInfo.weatherInfo : {}, weatherInfo)}));
+    public removeCity(cityId: number) {
+        const storedList = this.getUserCitiesList();
+        this.setUserCitiesList(storedList.filter(item => item !== cityId));
+    }
+
+    private isValidNumberArray(ids: number[]) {
+        return ids && ids.length && !isNaN(ids[0])
     }
 
     private setUserCitiesList(cities: number[]) {
         localStorage.setItem('userCities', JSON.stringify(cities));
-    }
-
-    private getCitiesCurrentWeatherStorage(): any {
-        const stored = localStorage.getItem('citiesCurrentWeather');
-        return JSON.parse(stored ? stored : null);
     }
 
     private getNewExpirationDateString(): String {

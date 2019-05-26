@@ -1,8 +1,9 @@
-<div mdbWavesEffect class="card" style="width: 100%;" (click)="itemClick()">
+<div mdbWavesEffect class="card" style="width: 100%; cursor: pointer;" (click)="itemClick()">
   <div class="card-body">
     <div class="row">
       <div class="col">
         <h5 class="card-title">{{name}}</h5>
+        <h6 *ngIf="alreadyAdded">(Esta cidade já está em sua lista)</h6>
       </div>
       <div class="col current-temp">
         <span>{{_currentTemp}}</span>  

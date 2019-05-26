@@ -9,17 +9,21 @@ import { WeatherDetailsService } from './weather-details.service';
 })
 export class WeatherDetailsComponent implements OnInit {
 
-  private cityId: number;
   public weatherInfo: any;
+  public isLoading = true;
 
   constructor(private activatedRoute: ActivatedRoute,
               private weatherDetailsService: WeatherDetailsService,
               private router: Router) { }
 
   ngOnInit() {
-    this.cityId = this.activatedRoute.snapshot.params['cityId'];
-    this.weatherDetailsService.getCityWeatherDetails(this.cityId)
-      .subscribe(weather => this.mapWeatherInfo(weather));
+    this.weatherDetailsService.getCityWeatherDetails(this.activatedRoute.snapshot.params['cityId'])
+      .subscribe(weather => {
+        this.mapWeatherInfo(weather);
+        this.isLoading = false;
+      }, () => {
+        this.isLoading = false;
+      });
   }
 
   backToList() {

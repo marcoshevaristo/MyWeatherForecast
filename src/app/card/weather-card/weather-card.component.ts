@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { DaysOfWeek, mapNumberDayToDayOfWeek } from 'src/app/commons/enums/days-of-week';
 import { MetricService } from 'src/app/commons/services/metric.service';
 
@@ -10,12 +10,15 @@ import { MetricService } from 'src/app/commons/services/metric.service';
 })
 export class WeatherCardComponent implements OnInit {
 
-  @Input() date: string;
+  @Input() id: number;
+  @Input() title: string;
   @Input() weatherState: string;
   @Input() minTemp: number;
   @Input() maxTemp: number;
   @Input() currentTemp: number;
   @Input() icon: string;
+  @Input() showRemoveButton = false;
+  @Output() removeEvent = new EventEmitter;
 
   public _minTemp;
   public _maxTemp;
@@ -30,9 +33,13 @@ export class WeatherCardComponent implements OnInit {
     });
   }
 
-  get _day() {
-    if (this.date) {
-      const date = new Date(this.date);
+  removeEventClick() {
+    this.removeEvent.emit(this.id);
+  }
+
+  get _title() {
+    if (this.title && !isNaN(Date.parse(this.title))) {
+      const date = new Date(this.title);
       const currentDate = new Date();
       let dayOfWeek;
       if (date.getDate() === currentDate.getDate()) {
@@ -44,7 +51,7 @@ export class WeatherCardComponent implements OnInit {
       }
       return `${dayOfWeek}, ${this.getFormattedDate(date)}`;
     }
-    return '';
+    return this.title;
   }
 
   get _weatherState() {

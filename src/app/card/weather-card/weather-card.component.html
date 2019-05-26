@@ -1,8 +1,17 @@
-<mdb-card mdbWavesEffect>
-    <mdb-card-title>
-        <h2 style="text-align: center;">{{_day}}</h2>
-      </mdb-card-title>
-  <mdb-card-body style=" margin-top: -2em;">
+<div mdbWavesEffect class="card">
+  <mdb-card-title>
+    <h2 style="text-align: center;">{{_title}}</h2>
+  </mdb-card-title>
+  <div *ngIf="showRemoveButton" style="position: absolute; 
+    right: 0.5em; 
+    top: 1em; 
+    font-size: 1.4em; 
+    z-index: 1000;">
+    <span style="padding: 8px; cursor: pointer;" (click)="removeEventClick()" mdbWavesEffect>
+      <i class="fas fa-trash"></i>
+    </span>
+  </div>
+  <div class="card-body" style=" margin-top: -2em;">
     <mdb-card-text>
         <div class="row">
             <div class="col-12" style="text-align: center;">
@@ -32,5 +41,5 @@
         </div>
       </div>
     </mdb-card-text>
-  </mdb-card-body>
-</mdb-card>
+  </div>
+</div>

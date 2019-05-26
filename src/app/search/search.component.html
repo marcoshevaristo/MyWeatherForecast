@@ -1,8 +1,8 @@
-<div class="ion-padding">
+<div class="ion-padding page-content">
     <div style="text-align: center;">
         <h2>Adicionar cidade</h2>
         <p>Pesquise por uma cidade e toque para adicioná-la</p>
-        <input 
+        <input #inputName
             placeholder="Insira o nome da cidade" 
             name="city" 
             [value]="cityNameInput" 
@@ -11,22 +11,19 @@
     <div *ngIf="isLoading" style="text-align: center; margin-top: 5em;">
         <loading-spinner [isLoading]="isLoading"></loading-spinner>
     </div>
-    <div *ngIf="!isLoading" class="row page-content">
+    <div *ngIf="!isLoading" class="row">
         <div class="card-container" style="width: 100%;">
-                <tile 
-                    *ngIf="searchResults"
-                    [id]="searchResults.id" 
-                    [name]="searchResults.name"
-                    [weatherState]="searchResults.weather[0]?.description"
-                    [icon]="searchResults.weather[0].icon"
-                    [currentTemp]="searchResults.main?.temp"
-                    [minTemp]="searchResults.main?.temp_min"
-                    [maxTemp]="searchResults.main?.temp_max"
-                    (itemClickEvent)="itemClick($event)">
+            <tile 
+                *ngIf="searchResults"
+                [id]="searchResults.id" 
+                [name]="searchResults.name"
+                [currentTemp]="searchResults.main?.temp"
+                [alreadyAdded]="searchResults.alreadyAdded"
+                (itemClickEvent)="itemClick($event)">
             </tile>
-            </div>
         </div>
-        <span *ngIf="cityNameInput && !searchResults && !isLoading">
-            Nenhum resultado encontrado
-        </span>
+    </div>
+    <span *ngIf="cityNameInput && !searchResults && !isLoading">
+        Nenhum resultado encontrado
+    </span>
 </div>

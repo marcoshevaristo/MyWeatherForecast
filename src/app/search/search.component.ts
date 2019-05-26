@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil, map, filter } from 'rxjs/operators';
 import { SearchService } from './search-service';
 import { MainListService } from '../main-list/main-list.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'search',
@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
   public keypress = new Subject<string>();
   public isLoading = false;
   public searchResults;
+  @ViewChild('inputName') inputName: ElementRef;
 
   constructor(private searchService: SearchService,
               private mainListService: MainListService,
@@ -35,12 +36,20 @@ export class SearchComponent implements OnInit {
         })
         .finally(() => this.isLoading = false);
     });
+
+    this.router.events.subscribe(() => {
+      this.searchResults = null;
+      setTimeout(() => this.inputName.nativeElement.focus());
+    });
+      
   }
 
-  itemClick($event) {
-    this.cityNameInput = '';
-    this.mainListService.addToUserList($event);
-    this.router.navigate(['/main-list']);
+  itemClick(cityId) {
+    const userCities = this.mainListService.getUserCitiesList();
+    if (!userCities.includes(cityId)) {
+      this.cityNameInput = '';
+      this.mainListService.addToUserList(cityId);
+      this.router.navigate(['/main-list'], {queryParams: [{newCityId: cityId}]});
+    }
   }
-
 }
