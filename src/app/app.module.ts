@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
+import { I18nSelectPipe } from '@angular/common';
 
 
 
@@ -24,7 +25,8 @@ import { HeaderComponent } from './header/header.component';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    I18nSelectPipe
   ],
   bootstrap: [AppComponent]
 })

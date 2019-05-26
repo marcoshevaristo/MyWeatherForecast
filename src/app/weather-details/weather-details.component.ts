@@ -10,7 +10,7 @@ import { WeatherDetailsService } from './weather-details.service';
 export class WeatherDetailsComponent implements OnInit {
 
   private cityId: number;
-  private weatherInfo: any;
+  public weatherInfo: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private weatherDetailsService: WeatherDetailsService) { }
@@ -18,9 +18,7 @@ export class WeatherDetailsComponent implements OnInit {
   ngOnInit() {
     this.cityId = this.activatedRoute.snapshot.params['cityId'];
     this.weatherDetailsService.getCityWeatherDetails(this.cityId)
-      .subscribe(weather => {
-        this.weatherInfo = this.mapWeatherInfo(weather);
-      });
+      .subscribe(weather => this.mapWeatherInfo(weather));
   }
 
   private mapWeatherInfo(weather) {
@@ -35,5 +33,4 @@ export class WeatherDetailsComponent implements OnInit {
       };
     }
   }
-
 }

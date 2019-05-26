@@ -1,0 +1,36 @@
+<mdb-card mdbWavesEffect>
+    <mdb-card-title>
+        <h2 style="text-align: center;">{{_day}}</h2>
+      </mdb-card-title>
+  <mdb-card-body style="height: 10em; margin-top: -2em;">
+    <mdb-card-text>
+        <div class="row">
+            <div class="col-12" style="text-align: center;">
+                <img *ngIf="iconUrl" src="{{iconUrl}}" 
+                  style="height: 5em; width: 5em; margin: auto;">
+                <i *ngIf="!iconUrl" class="far fa-question-circle"></i>
+              </div>
+          </div>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col-12">
+              ccc
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              {{minTemp}}
+            </div>
+            <div class="col-6">
+              {{maxTemp}}
+            </div>
+          </div>
+        </div>
+        <div class="col current-temp" style="text-align: right;">
+          {{currentTemp}} 
+        </div>
+      </div>
+    </mdb-card-text>
+  </mdb-card-body>
+</mdb-card>
