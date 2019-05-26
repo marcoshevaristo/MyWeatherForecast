@@ -3,10 +3,15 @@
     <div style="margin-top: 0.3em;">
         <ion-title>
           Weather Forecast
-          <div class="search-link" (click)="navigate()" style="cursor: pointer;" mdbWavesEffect>
+          <div>
+            <div class="header-button" (click)="changeTemperatureMetric()" style="cursor: pointer;" mdbWavesEffect>
+              {{temperatureFormatLabel}}
+            </div>
+            <div class="header-button" (click)="navigate()" style="cursor: pointer;" mdbWavesEffect>
               <i class="{{searchIcon}}" style="margin-left: 0.4em; font-size: 1.2em;"></i>
             </div>
-          </ion-title>
+          </div>
+        </ion-title>
     </div>
   </ion-toolbar>
 </ion-header>

@@ -10,6 +10,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { I18nSelectPipe } from '@angular/common';
+import { TemperatureConverterPipe } from './commons/pipes/temperature-pipe';
 
 
 

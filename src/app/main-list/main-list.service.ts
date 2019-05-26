@@ -24,7 +24,7 @@ export class MainListService {
             if (idsToRequest && idsToRequest.length) {
                 const citiesIdsStr = idsToRequest.join(',');
                 return this.http.get(
-                    `http://api.openweathermap.org/data/2.5/group?id=${citiesIdsStr}&units=metric&APPID=${getWeatherApiKey()}`)
+                    `http://api.openweathermap.org/data/2.5/group?id=${citiesIdsStr}&units=metric&APPID=${getWeatherApiKey()}&lang=pt`)
                     
             }
 

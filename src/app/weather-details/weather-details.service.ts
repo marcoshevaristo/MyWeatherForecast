@@ -8,6 +8,6 @@ export class WeatherDetailsService {
     constructor(private http: HttpClient) { }
 
     public getCityWeatherDetails(cityId: number) {
-        return this.http.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cityId}&APPID=${getWeatherApiKey()}`);
+        return this.http.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cityId}&APPID=${getWeatherApiKey()}&units=metric&lang=pt`);
     }
 }
