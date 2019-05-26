@@ -10,19 +10,18 @@ export class MainListService {
     constructor(private http: HttpClient) { }
 
     public getCitiesCurrentWeather(): Observable<any> {
-        const storageCities = this.getUserCitiesList();
-        if (storageCities && storageCities.length) {
-            let idsToRequest = storageCities.map(city => city.id);
+        let storageCitiesIds = this.getUserCitiesList();
+        if (storageCitiesIds && storageCitiesIds.length) {
             const storageCurrentWeather = this.getCitiesCurrentWeatherStorage();
             if (storageCurrentWeather 
                     && new Date().getTime() > Date.parse(storageCurrentWeather.expirationDate)) {
                 const itemsOnStorageAndList = storageCurrentWeather.weatherInfo.list
-                    .filter(item => idsToRequest.includes(item.id)).map(item => item.id);
-                idsToRequest = idsToRequest.filter(id => !itemsOnStorageAndList.includes(id));
+                    .filter(item => storageCitiesIds.includes(item.id)).map(item => item.id);
+                storageCitiesIds = storageCitiesIds.filter(id => !itemsOnStorageAndList.includes(id));
             }
 
-            if (idsToRequest && idsToRequest.length) {
-                const citiesIdsStr = idsToRequest.join(',');
+            if (storageCitiesIds && storageCitiesIds.length) {
+                const citiesIdsStr = storageCitiesIds.join(',');
                 return this.http.get(
                     `http://api.openweathermap.org/data/2.5/group?id=${citiesIdsStr}&units=metric&APPID=${getWeatherApiKey()}&lang=pt`)
                     
@@ -34,27 +33,18 @@ export class MainListService {
         return of(null);
     }
     
-    public getUserCitiesList(): City[] {
-        // const stored = localStorage.getItem('userCities');
-        // return JSON.parse(stored ? stored : '{}');
-        return [
-            {
-                id: 6323074,
-                name: 'Blumenau'
-            },
-            {
-                id: 3462535,
-                name: 'Gaspar'
-            },
-            {
-                id: 3461316,
-                name: 'Indaial'
-            }
-        ]
+    public getUserCitiesList(): number[] {
+        const stored = localStorage.getItem('userCities');
+        return JSON.parse(stored ? stored : '[]');
     }
 
-    private setUserCitiesList(cities: City[]) {
-        localStorage.setItem('userCities', JSON.stringify(cities));
+    public addToUserList(cityId: number) {
+        let citiesList = this.getUserCitiesList();
+        if (!citiesList) {
+            citiesList = [];
+        }
+        citiesList.push(cityId);
+        this.setUserCitiesList(citiesList);
     }
 
     public setCitiesCurrentWeatherStorage(weatherInfo: any) {
@@ -62,6 +52,10 @@ export class MainListService {
         const currentInfo = this.getCitiesCurrentWeatherStorage();
         localStorage.setItem('citiesCurrentWeather', 
             JSON.stringify({expirationDate, weatherInfo: Object.assign(currentInfo ? currentInfo.weatherInfo : {}, weatherInfo)}));
+    }
+
+    private setUserCitiesList(cities: number[]) {
+        localStorage.setItem('userCities', JSON.stringify(cities));
     }
 
     private getCitiesCurrentWeatherStorage(): any {

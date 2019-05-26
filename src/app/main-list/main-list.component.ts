@@ -12,7 +12,8 @@ export class MainListComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.wheatherInfo = this.activatedRoute.snapshot.data['listData'].list;
+    const storedWeatherInfo = this.activatedRoute.snapshot.data['listData'];
+    this.wheatherInfo = storedWeatherInfo && storedWeatherInfo.list ? storedWeatherInfo.list : null;
   }
 
 }

@@ -1,14 +1,22 @@
-<div class="ion-padding row page-content">
-    <div class="card-container col-sm-4 col-md-4 col-lg-2" 
-      *ngFor="let city of wheatherInfo">
-      <citycard 
-        [id]="city?.id" 
-        [name]="city?.name"
-        [weatherState]="city?.weather[0]?.description"
-        [icon]="city?.weather[0].icon"
-        [currentTemp]="city?.main?.temp"
-        [minTemp]="city?.main?.temp_min"
-        [maxTemp]="city?.main?.temp_max">
-      </citycard>
+<div class="ion-padding">
+  <div *ngIf="!wheatherInfo" style="text-align: center;"> 
+    <h2>Parece que você não adicionou uma cidade ainda</h2>
+    <p>Tente adicionar uma usando o botão de busca</p>
+  </div>
+  <div *ngIf="wheatherInfo" class="page-content">
+    <div class="row">
+      <div class="card-container col-sm-4 col-md-4 col-lg-2" 
+        *ngFor="let city of wheatherInfo">
+        <citycard 
+          [id]="city?.id" 
+          [name]="city?.name"
+          [weatherState]="city?.weather[0]?.description"
+          [icon]="city?.weather[0].icon"
+          [currentTemp]="city?.main?.temp"
+          [minTemp]="city?.main?.temp_min"
+          [maxTemp]="city?.main?.temp_max">
+        </citycard>
+      </div>
     </div>
   </div>
+</div>

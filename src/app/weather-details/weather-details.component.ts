@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherDetailsService } from './weather-details.service';
 
 @Component({
@@ -13,12 +13,17 @@ export class WeatherDetailsComponent implements OnInit {
   public weatherInfo: any;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private weatherDetailsService: WeatherDetailsService) { }
+              private weatherDetailsService: WeatherDetailsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.cityId = this.activatedRoute.snapshot.params['cityId'];
     this.weatherDetailsService.getCityWeatherDetails(this.cityId)
       .subscribe(weather => this.mapWeatherInfo(weather));
+  }
+
+  backToList() {
+    this.router.navigate(['/main-list']);
   }
 
   private mapWeatherInfo(weather) {

@@ -1,13 +1,22 @@
-<div class="ion-padding row page-content">
-    <div class="card-container col-sm-4 col-md-4 col-lg-2"
-      *ngFor="let dayForecast of weatherInfo?.weatherByDay">
-      <weather-card
-        [date]="dayForecast?.dt_txt"
-        [weatherState]="dayForecast?.weather[0]?.description"
-        [icon]="dayForecast?.weather[0]?.icon"
-        [minTemp]="dayForecast?.main.temp_min"
-        [maxTemp]="dayForecast?.main.temp_max"
-        [currentTemp]="dayForecast?.main.temp">
-      </weather-card>
-    </div>
+<div class="ion-padding">
+  <button
+    class="btn btn-success"
+    (click)="backToList()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <h2 style="text-align: center;">{{weatherInfo?.city?.name}}</h2>
+  
+  <div class="row page-content">
+      <div class="card-container col-sm-4 col-md-4 col-lg-2"
+        *ngFor="let dayForecast of weatherInfo?.weatherByDay">
+        <weather-card
+          [date]="dayForecast?.dt_txt"
+          [weatherState]="dayForecast?.weather[0]?.description"
+          [icon]="dayForecast?.weather[0]?.icon"
+          [minTemp]="dayForecast?.main.temp_min"
+          [maxTemp]="dayForecast?.main.temp_max"
+          [currentTemp]="dayForecast?.main.temp">
+        </weather-card>
+      </div>
+  </div>
 </div>

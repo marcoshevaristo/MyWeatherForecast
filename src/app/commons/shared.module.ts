@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { TemperatureConverterPipe } from './pipes/temperature-pipe';
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @NgModule({
-  declarations: [TemperatureConverterPipe],
+  declarations: [
+    TemperatureConverterPipe,
+    LoadingSpinnerComponent
+  ],
   imports: [
     CommonModule,
     IonicModule,
@@ -14,7 +18,8 @@ import { TemperatureConverterPipe } from './pipes/temperature-pipe';
   exports: [
     CommonModule,
     IonicModule,
-    TemperatureConverterPipe
+    TemperatureConverterPipe,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

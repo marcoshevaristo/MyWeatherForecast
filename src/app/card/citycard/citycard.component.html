@@ -1,4 +1,17 @@
-<mdb-card>
+<mdb-card style="position: relative;">
+  <div style="
+    position: absolute; 
+    right: 0.5em; 
+    top: 1em; 
+    font-size: 1.4em; 
+    z-index: 1000;">
+    <span style="padding: 8px; cursor: pointer;" mdbWavesEffect>
+      <i class="fas fa-heart"></i>
+    </span>
+    <span style="padding: 8px; cursor: pointer;" mdbWavesEffect>
+      <i class="fas fa-trash"></i>
+    </span>
+  </div>
   <mdb-card-body mdbWavesEffect (click)="goToDetails()" style="cursor: pointer;">
     <mdb-card-title>
       <h2 style="text-align: center;">{{name}}</h2>
