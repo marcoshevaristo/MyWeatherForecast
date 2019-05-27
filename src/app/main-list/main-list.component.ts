@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MainListService } from './main-list.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { MainListService } from './main-list.service';
 
 @Component({
   selector: 'main-list',
@@ -15,7 +14,8 @@ export class MainListComponent implements OnInit {
   public isLoading = true;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private mainListService: MainListService) { }
+              private mainListService: MainListService,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.pipe(switchMap(queryParams => {
@@ -29,5 +29,13 @@ export class MainListComponent implements OnInit {
   removeFromList(cityId) {
     this.mainListService.removeCity(cityId);
     this.weatherInfo = this.weatherInfo.filter(city => city.id !== cityId);
+  }
+
+  getCardTitle(cityName: string, cityCountry: string) {
+    return cityName + ', ' + cityCountry;
+  }
+
+  goToDetails(cityId: number) {
+    this.router.navigate([`/weather-details/${cityId}`])
   }
 }

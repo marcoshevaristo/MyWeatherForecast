@@ -1,45 +1,33 @@
-<div mdbWavesEffect class="card">
-  <mdb-card-title>
-    <h2 style="text-align: center;">{{_title}}</h2>
-  </mdb-card-title>
-  <div *ngIf="showRemoveButton" style="position: absolute; 
-    right: 0.5em; 
-    top: 1em; 
-    font-size: 1.4em; 
-    z-index: 1000;">
-    <span style="padding: 8px; cursor: pointer;" (click)="removeEventClick()" mdbWavesEffect>
-      <i class="fas fa-trash"></i>
-    </span>
-  </div>
-  <div class="card-body" style=" margin-top: -2em;">
-    <mdb-card-text>
-        <div class="row">
-            <div class="col-12" style="text-align: center;">
-                <img *ngIf="iconUrl" src="{{iconUrl}}" 
-                  style="height: 5em; width: 5em; margin: auto;">
-                <i *ngIf="!iconUrl" class="far fa-question-circle"></i>
-              </div>
-          </div>
-      <div class="row">
-        <div class="col">
-          <div class="row">
-            <div class="col-12 weather-state">
-              {{_weatherState}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              {{_minTemp | temperature}}
-            </div>
-            <div class="col-6">
-              {{_maxTemp | temperature}}
-            </div>
+<div class="card" (click)="clickEvent()">
+  <div class="view overlay">
+    <a href="javascript:void(0);">
+      <div class="mask waves-effect rgba-white-slight" mdbWavesEffect></div>
+    </a>
+    <h5 class="card-title custom-card-title">{{_title}}</h5>
+    <div *ngIf="showRemoveButton" class="remove-button">
+      <span (click)="removeEventClick()" mdbWavesEffect>
+        <i class="fas fa-trash"></i>
+      </span>
+    </div>
+    <div class="card-body">
+      <div class="row card-details">
+        <div class="col-6">
+          <div class="weather-state">
+            {{_weatherState}}
           </div>
         </div>
-        <div class="col current-temp" style="text-align: right;">
-          {{_currentTemp | temperature}} 
+        <div class="col-6">
+          <div class="current-temp">
+              {{_currentTemp | temperature}}
+          </div>
+          <p class="text-right">
+            {{_maxTemp | temperature}}
+            -
+            {{_minTemp | temperature}} 
+          </p>
         </div>
       </div>
-    </mdb-card-text>
+          
+    </div>
   </div>
 </div>

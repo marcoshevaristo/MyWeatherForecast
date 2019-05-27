@@ -1,8 +1,8 @@
 <div class="ion-padding page-content">
-    <div style="text-align: center;">
+    <div class="text-center">
         <h2>Adicionar cidade</h2>
         <p>Pesquise por uma cidade e toque para adicioná-la</p>
-        <input #inputName
+        <input #inputName autofocus
             placeholder="Insira o nome da cidade" 
             name="city" 
             [value]="cityNameInput" 
@@ -23,7 +23,7 @@
             </tile>
         </div>
     </div>
-    <span *ngIf="cityNameInput && !searchResults && !isLoading">
-        Nenhum resultado encontrado
-    </span>
+    <div class="text-center" *ngIf="cityNameInput && !searchResults && !isLoading">
+        <p>Nenhum resultado encontrado</p>
+    </div>
 </div>

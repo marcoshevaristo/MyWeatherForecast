@@ -2,14 +2,16 @@
   <ion-toolbar>
     <div style="margin-top: 0.3em;">
         <ion-title>
-          Weather Forecast
-          <div>
-            <div class="header-button" (click)="changeTemperatureMetric()" style="cursor: pointer;" mdbWavesEffect>
+          <div style="position: static; float: left;">
+              Weather Forecast
+          </div>
+          <div style="position: static; float: right; line-height: 1.4em;">
+            <span (click)="changeTemperatureMetric()" style="cursor: pointer; font-size: 1.4em; font-weight: 500;" mdbWavesEffect>
               {{temperatureFormatLabel}}
-            </div>
-            <div class="header-button" (click)="navigate()" style="cursor: pointer;" mdbWavesEffect>
-              <i class="{{searchIcon}}" style="margin-left: 0.4em; font-size: 1.2em;"></i>
-            </div>
+            </span>
+            <span (click)="navigate()" style="cursor: pointer; font-size: 1.2em;" mdbWavesEffect>
+              <i class="{{searchIcon}}" style="margin-left: 0.4em;"></i>
+            </span>
           </div>
         </ion-title>
     </div>

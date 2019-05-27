@@ -19,6 +19,7 @@ export class WeatherCardComponent implements OnInit {
   @Input() icon: string;
   @Input() showRemoveButton = false;
   @Output() removeEvent = new EventEmitter;
+  @Output() onClickEvent = new EventEmitter;
 
   public _minTemp;
   public _maxTemp;
@@ -35,6 +36,14 @@ export class WeatherCardComponent implements OnInit {
 
   removeEventClick() {
     this.removeEvent.emit(this.id);
+  }
+
+  clickEvent() {
+    this.onClickEvent.emit(this.id);
+  }
+
+  preventDefault($event) {
+    $event.preventDefault();
   }
 
   get _title() {
