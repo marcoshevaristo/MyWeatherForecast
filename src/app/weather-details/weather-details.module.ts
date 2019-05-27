@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { WeatherDetailsComponent } from './weather-details.component';
-import { WeatherDetailsRoutingModule } from './weather-details-routing.module';
-import { SharedModule } from '../commons/shared.module';
-import { WeatherDetailsService } from './weather-details.service';
-import { CardModule } from '../card/card.module';
 import { FormsModule } from '@angular/forms';
+import { CardModule } from '../card/card.module';
+import { SharedModule } from '../commons/shared.module';
+import { WeatherDetailsRoutingModule } from './weather-details-routing.module';
+import { WeatherDetailsComponent } from './weather-details.component';
 
 @NgModule({
   declarations: [WeatherDetailsComponent],
@@ -13,7 +12,6 @@ import { FormsModule } from '@angular/forms';
     WeatherDetailsRoutingModule,
     CardModule,
     FormsModule
-  ],
-  providers: [WeatherDetailsService]
+  ]
 })
 export class WeatherDetailsModule { }

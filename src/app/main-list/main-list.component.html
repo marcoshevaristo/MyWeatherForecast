@@ -1,8 +1,8 @@
 <div class="ion-padding page-content">
-  <div *ngIf="isLoading" style="text-align: center; margin-top: 5em;">
+  <div *ngIf="isLoading" class="loader-container">
       <loading-spinner [isLoading]="isLoading"></loading-spinner>
   </div>
-  <div *ngIf="!weatherInfo && !isLoading" style="text-align: center;"> 
+  <div *ngIf="(!weatherInfo || !weatherInfo.length) && !isLoading" class="text-center">
     <h2>Parece que você não adicionou uma cidade ainda</h2>
     <p>Tente adicionar uma usando o botão de busca</p>
   </div>

@@ -1,24 +1,19 @@
 import { Injectable } from "@angular/core";
-import { City } from '../commons/interfaces/city';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { getWeatherApiKey } from '../commons/api-keys/api-keys';
+import { WeatherApiService } from '../commons/services/weather-api.service';
 
 @Injectable()
 export class MainListService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private weatherApiService: WeatherApiService) { }
 
     public getCitiesCurrentWeather(citiesIds?: number[]): Observable<any> {
         let citiesIdsToSearch = this.isValidNumberArray(citiesIds) ? citiesIds : this.getUserCitiesList();
         if (citiesIdsToSearch && citiesIdsToSearch.length) {
             if (citiesIdsToSearch && citiesIdsToSearch.length) {
-                const citiesIdsStr = citiesIdsToSearch.join(',');
-                return this.http.get(
-                    `http://api.openweathermap.org/data/2.5/group?id=${citiesIdsStr}&units=metric&APPID=${getWeatherApiKey()}&lang=pt`)  
+                return this.weatherApiService.getCurrentWeatherInfo(citiesIdsToSearch);
             }
         }
-
         return of(null);
     }
     

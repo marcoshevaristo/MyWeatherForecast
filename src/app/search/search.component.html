@@ -8,7 +8,7 @@
             [value]="cityNameInput" 
             (keyup)="keypress.next($event.target.value)"/>
     </div>
-    <div *ngIf="isLoading" style="text-align: center; margin-top: 5em;">
+    <div *ngIf="isLoading" class="loader-container">
         <loading-spinner [isLoading]="isLoading"></loading-spinner>
     </div>
     <div *ngIf="!isLoading" class="row">

@@ -1,12 +1,10 @@
 <div class="ion-padding page-content">
-  <button
-    class="btn btn-success"
-    (click)="backToList()">
+  <button class="btn btn-success" (click)="backToList()">
     <i class="fas fa-arrow-left"></i>
   </button>
-  <h2 style="text-align: center;">{{weatherInfo?.city?.name}}</h2>
-  <p *ngIf="!isLoading" style="text-align: center;">Previsão para os próximos dias</p>
-  <div *ngIf="isLoading" style="text-align: center; margin-top: 5em;">
+  <h2 class="text-center">{{weatherInfo?.city?.name}}</h2>
+  <p *ngIf="!isLoading" class="text-center">Previsão para os próximos dias</p>
+  <div *ngIf="isLoading" class="loader-container">
       <loading-spinner [isLoading]="isLoading"></loading-spinner>
   </div>
   <div *ngIf="weatherInfo && !isLoading">
